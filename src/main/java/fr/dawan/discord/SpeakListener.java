@@ -17,7 +17,7 @@ public class SpeakListener extends ListenerAdapter {
     public void onGuildReady(GuildReadyEvent event) {
         Guild serveur = event.getGuild();
         SlashCommandData speakCommand = Commands.slash("speak", "Faire Parler son bot");
-        OptionData text = new OptionData(OptionType.STRING, "text", "Le texte à afficher", true);
+        OptionData text = new OptionData(OptionType.STRING, "text", "Le texte à afficher",true);
         speakCommand.addOptions(text);
         serveur.updateCommands().addCommands(speakCommand).queue();
     }
