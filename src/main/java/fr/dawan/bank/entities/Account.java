@@ -18,12 +18,21 @@ public class Account {
 
     public void deposit(double amount) {
         solde += amount;
-        history.add("Deposit : "+amount);
+        addHistory("Deposit", amount);
     }
 
     public void withdraw(double amount) throws InsufficientFundsException {
         if(solde < amount) throw new InsufficientFundsException(solde,amount);
         solde -= amount;
-        history.add("Withdraw : "+amount);
+        addHistory("Withdraw", amount);
+    }
+
+    public void transfer(double amount, Account target) throws InsufficientFundsException {
+        withdraw(amount);
+        target.deposit(amount);
+    }
+
+    private void addHistory(String action, double amount) {
+        history.add("%s : %.2f €".formatted(action,amount)); // "".formated(...) équivalent à String.format("",...)
     }
 }
