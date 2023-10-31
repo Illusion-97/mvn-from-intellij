@@ -24,6 +24,7 @@ public class SpeakListener extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
+        try {
             String commandName = event.getName();
             if(commandName.equals("speak")) {
                 // Le retour de getOption peur être null, c'est pour cela qu'on a un avertissement
@@ -33,5 +34,8 @@ public class SpeakListener extends ListenerAdapter {
                 event.reply(optionAsString).queue();*/
                 event.reply(Objects.requireNonNull(event.getOption("text")).getAsString()).queue();
             }
+        } catch (RuntimeException e) {
+            event.reply("Quelque chose ne va pas, I'm a teapot !").setEphemeral(true).queue();
+        }
     }
 }
