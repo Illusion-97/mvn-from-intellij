@@ -1,6 +1,7 @@
 package fr.dawan;
 
 
+import fr.dawan.discord.BankListener;
 import fr.dawan.discord.SpeakListener;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -20,7 +21,7 @@ public class Main {
                 .setChunkingFilter(ChunkingFilter.ALL)
                 .setBulkDeleteSplittingEnabled(false)
                 .setActivity(Activity.watching("le coffre de la banque"))
-                .addEventListeners(new SpeakListener())
+                .addEventListeners(new BankListener())
                 .build();
     }
 }

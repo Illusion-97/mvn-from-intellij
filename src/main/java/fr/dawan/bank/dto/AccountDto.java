@@ -13,6 +13,10 @@ public class AccountDto {
     private String maskedCode;
     private int historyCount;
 
+    public void setMaskedCode(String maskedCode) {
+        this.maskedCode = maskedCode == null ? "Code non généré" : "******";
+    }
+
     @Override
     public String toString() {
         return "AccountDto{" +

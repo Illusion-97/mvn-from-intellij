@@ -33,13 +33,17 @@ public class BankService {
         return Objects.toString(accountMapper.toDto(getAccount(name)), "Erreur durant la récupération du compte");
     }
 
-    public static void deposit(String name, double amount) throws AccountNotFoundException {
-        getAccount(name).deposit(amount);
+    public static double deposit(String name, double amount) throws AccountNotFoundException {
+        return getAccount(name).deposit(amount);
     }
-    public static void withdraw(String name, double amount) throws AccountNotFoundException, InsufficientFundsException {
-        getAccount(name).withdraw(amount);
+    public static double withdraw(String name, double amount) throws AccountNotFoundException, InsufficientFundsException {
+        return getAccount(name).withdraw(amount);
     }
     public static void transfer(String name, String targetName, double amount) throws AccountNotFoundException, InsufficientFundsException {
         getAccount(name).transfer(amount,getAccount(targetName));
+    }
+
+    public static String generateCode(String name) throws AccountNotFoundException {
+        return getAccount(name).generateCode();
     }
 }
